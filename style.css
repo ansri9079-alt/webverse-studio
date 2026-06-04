@@ -17,7 +17,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: none; /* Custom cursor will be handled in JS */
+    cursor: default; /* Default cursor for touch devices */
 }
 
 body {
@@ -26,6 +26,7 @@ body {
     font-family: var(--font-main);
     line-height: 1.6;
     overflow-x: hidden;
+    padding-top: 80px; /* Prevent header overlap */
 }
 
 h1, h2, h3, h4 {
@@ -56,29 +57,10 @@ ul {
     border-radius: 10px;
 }
 
-/* --- Custom Cursor --- */
-#custom-cursor {
-    position: fixed;
-    width: 20px;
-    height: 20px;
-    background: var(--white);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    mix-blend-mode: difference;
-    transition: transform 0.1s ease;
-}
+/* Custom cursor removed */
+/* Custom cursor media query removed */
 
-#cursor-glow {
-    position: fixed;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9998;
-    transform: translate(-50%, -50%);
-}
+/* Cursor glow removed */
 
 /* --- Scroll Progress --- */
 #scroll-progress {
@@ -151,6 +133,8 @@ ul {
 .btn-secondary {
     border: 1px solid var(--violet);
     color: white;
+    padding: 6px 2px;
+    border-radius: 19px;
 }
 
 /* --- Navigation --- */
@@ -723,10 +707,7 @@ footer {
 .achievements-grid .reveal:nth-child(4) { transition-delay: 0.45s; }
 
 /* Custom cursor refinement */
-#custom-cursor {
-    width: 10px;
-    height: 10px;
-}
+/* Removed duplicated cursor definition – handled via media query */
 
 /* --- Mobile Responsive --- */
 @media (max-width: 768px) {
@@ -735,7 +716,7 @@ footer {
     }
     
     .tech-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
     
     .configurator-summary {
@@ -748,10 +729,29 @@ footer {
     }
     
     .hero-content h1 {
-        font-size: 3.5rem;
+        font-size: clamp(2.5rem, 8vw, 4rem);
     }
     
     .section-title h2 {
-        font-size: 2.5rem;
+        font-size: clamp(2rem, 6vw, 3rem);
     }
+}
+/* Mobile enhancements */
+.burger { display: none; }
+/* Smaller font for Contact section title */
+#contact .section-title h2 {
+    font-size: 1.5rem; /* smaller than default */
+}
+
+.nav-links {
+    display: none;
+}
+.nav-links.active {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+/* Configurator summary full width on mobile */
+.configurator-summary {
+    width: 100%;
 }
